@@ -1,0 +1,50 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+
+  <!-- ===================================== -->
+  <!-- Resource Component                     -->
+  <!-- ===================================== -->
+  <Frame name="HSCUI_ResourceFrame" parent="HSCUI_MainFrame" hidden="false" frameStrata="HIGH" frameLevel="3">
+    <Size><AbsDimension x="256" y="256"/></Size>
+
+    <!-- Position: relative to parent (below trait) -->
+    <Anchors>
+      <Anchor point="CENTER">
+        <Offset><AbsDimension x="0" y="-160"/></Offset>
+      </Anchor>
+    </Anchors>
+
+    <!-- ===================================== -->
+    <!-- Layers: container background + fill    -->
+    <!-- ===================================== -->
+    <Layers>
+      <!-- Resource Bar Background -->
+      <Layer level="BACKGROUND">
+        <Texture name="HSCUI_ResourceBG"
+                 file="Interface\AddOns\HearthstoneCombatUI\Media\Resources\Rogue\resourcecontainer.tga"
+                 setAllPoints="true">
+        </Texture>
+      </Layer>
+
+      <!-- Resource Bar Fill -->
+      <Layer level="ARTWORK">
+        <Texture name="HSCUI_ResourceFill"
+                 file="Interface\AddOns\HearthstoneCombatUI\Media\Resources\Rogue\resourcebar-energy.tga"
+                 setAllPoints="true">
+        </Texture>
+      </Layer>
+    </Layers>
+
+    <!-- ===================================== -->
+    <!-- Initialization Script                  -->
+    <!-- ===================================== -->
+    <Scripts>
+      <OnLoad>
+        DEFAULT_CHAT_FRAME:AddMessage("HSCUI_ResourceFrame visible!");
+        this:Show();
+      </OnLoad>
+    </Scripts>
+  </Frame>
+
+</Ui>

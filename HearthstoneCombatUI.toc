@@ -1,0 +1,22 @@
+## ---------------------------------------
+## Basic Addon Info
+## ---------------------------------------
+## Interface: 11200
+## Title: HearthstoneCombatUI
+## Author: Chiieflady
+## Version: 1.0
+## Notes: Hearthstone styled combat interface
+
+## ---------------------------------------
+## Saved Variables
+## ---------------------------------------
+## SavedVariables: HearthstoneCombatUI_Saved
+## SavedVariablesPerCharacter: HearthstoneCombatUI_CharacterSaved
+
+## ---------------------------------------
+## Loaded Files
+## (List Lua/XML files here as we build)
+## ---------------------------------------
+
+HearthstoneCombatUI.lua
+HearthstoneCombatUI.xml

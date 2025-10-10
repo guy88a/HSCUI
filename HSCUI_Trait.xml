@@ -1,0 +1,58 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+
+  <!-- ===================================== -->
+  <!-- Trait Component                        -->
+  <!-- ===================================== -->
+  <Frame name="HSCUI_TraitFrame" parent="HSCUI_MainFrame" hidden="false" frameStrata="HIGH" frameLevel="2">
+    <Size><AbsDimension x="128" y="128"/></Size>
+
+    <!-- Position: relative to parent (Main). No relativeTo means "$parent". -->
+    <Anchors>
+      <Anchor point="CENTER">
+        <Offset><AbsDimension x="0" y="-25"/></Offset>
+      </Anchor>
+    </Anchors>
+
+    <!-- ===================================== -->
+    <!-- Layers: weapon icon + combo border     -->
+    <!-- ===================================== -->
+    <Layers>
+      <!-- Trait Icons -->
+      <Layer level="BACKGROUND">
+        <Texture name="HSCUI_TraitIconOff"
+                 setAllPoints="true">
+          <Color r="1" g="0" b="0" a="0.2"/> <!-- semi-transparent red to test -->
+        </Texture>
+      </Layer>
+      <Layer level="BACKGROUND">
+        <Texture name="HSCUI_TraitIconOn"
+                 setAllPoints="true">
+          <Color r="1" g="0" b="0" a="0.2"/> <!-- semi-transparent red to test -->
+        </Texture>
+      </Layer>
+
+      <!-- Combo Border Overlay -->
+      <Layer level="OVERLAY">
+        <Texture name="HSCUI_TraitComboBorder"
+                 file="Interface\AddOns\HearthstoneCombatUI\Media\Trait\Rogue\0_border.tga"
+                 setAllPoints="true">
+          <Color r="0" g="1" b="0" a="0.2"/> <!-- semi-transparent green to test -->
+        </Texture>
+      </Layer>
+    </Layers>
+
+    <!-- ===================================== -->
+    <!-- Initialization Script                  -->
+    <!-- ===================================== -->
+    <Scripts>
+      <OnLoad>
+        DEFAULT_CHAT_FRAME:AddMessage("HSCUI_TraitFrame visible!");
+        HSCUI_SetTraitTextures();
+        this:Show();
+      </OnLoad>
+    </Scripts>
+  </Frame>
+
+</Ui>
