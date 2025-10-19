@@ -1,0 +1,5 @@
+local frame = CreateFrame("Frame")
+frame:RegisterEvent("PLAYER_ENTERING_WORLD")
+frame:SetScript("OnEvent", function()
+    print("HSCUI: Abilities component initialized in world.")
+end)

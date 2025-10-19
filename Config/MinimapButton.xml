@@ -1,0 +1,14 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+    <!-- HearthstoneCombatUI - Minimap Button -->
+    <Button name="HSCUI_MinimapButton" parent="Minimap" hidden="false" 
+            toplevel="true" frameStrata="HIGH" movable="true">
+        <Size x="24" y="24"/>
+        <Anchors>
+            <Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="52" y="-20"/>
+        </Anchors>
+
+        <NormalTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\hscui_icon.tga"/>
+        <PushedTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\hscui_icon-active.tga"/>
+        <HighlightTexture file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD"/>
+    </Button>
+</Ui>

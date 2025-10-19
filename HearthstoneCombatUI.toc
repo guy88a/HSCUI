@@ -1,22 +1,23 @@
-## ---------------------------------------
-## Basic Addon Info
-## ---------------------------------------
 ## Interface: 11200
-## Title: HearthstoneCombatUI
+## Title: Hearthstone Combat UI
 ## Author: Chiieflady
 ## Version: 1.0
-## Notes: Hearthstone styled combat interface
+## Notes: Hearthstone-style combat UI for WoW 1.12
+## DefaultState: enabled
 
-## ---------------------------------------
-## Saved Variables
-## ---------------------------------------
-## SavedVariables: HearthstoneCombatUI_Saved
-## SavedVariablesPerCharacter: HearthstoneCombatUI_CharacterSaved
-
-## ---------------------------------------
-## Loaded Files
-## (List Lua/XML files here as we build)
-## ---------------------------------------
-
+# Core initialization
 HearthstoneCombatUI.lua
+
+# Component logic scripts
+Components\Trait\Trait.lua
+Components\Resources\Resources.lua
+Components\Abilities\Abilities.lua
+
+# Main XML container (loads all component XMLs internally)
 HearthstoneCombatUI.xml
+
+# Optional config or settings UI (to be added later)
+Config\Config.lua
+Config\Config.xml
+Config\MinimapButton.lua
+Config\MinimapButton.xml

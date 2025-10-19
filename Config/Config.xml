@@ -1,0 +1,196 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+    <!--
+    HearthstoneCombatUI - Config Window (1.12-compatible)
+    Dark background, toggled with /hscui
+    -->
+
+    <!-- 1 - Main Dialog -->
+    <Frame name="HSCUI_ConfigFrame" hidden="true" movable="true" enableMouse="true" toplevel="true" frameStrata="DIALOG" frameLevel="10">
+        <Size x="250" y="460"/>
+        <Anchors>
+            <Anchor point="CENTER"/>
+        </Anchors>
+
+        <!-- Main Background -->
+        <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+            <TileSize val="32"/>
+            <EdgeSize val="16"/>
+            <BackgroundInsets>
+                <AbsInset left="5" right="5" top="5" bottom="5"/>
+            </BackgroundInsets>
+        </Backdrop>
+
+        <Frames>
+            <!-- 1.1 - Main Title -->
+            <Frame name="$parentMainTitle">
+                <Size x="250" y="40"/>
+                <Anchors>
+                    <Anchor point="TOP" x="0" y="-10"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString name="$parentText" inherits="GameFontNormalLarge" text="HSCUI Config">
+                            <Color r="1.0" g="1.0" b="1.0"/>
+                            <Anchors>
+                                <Anchor point="CENTER"/>
+                            </Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <!-- 1.2 - Board Section -->
+            <Frame name="$parentBoardSection">
+                <Size x="230" y="360"/>
+                <Anchors>
+                    <Anchor point="TOP" relativeTo="$parentMainTitle" relativePoint="BOTTOM" x="0" y="-10"/>
+                </Anchors>
+
+                <Frames>
+                    <!-- 1.21 - Board Title -->
+                    <Frame name="$parentBoardTitle">
+                        <Size x="230" y="30"/>
+                        <Anchors>
+                            <Anchor point="TOPLEFT" x="10" y="0"/>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="ARTWORK">
+                                <FontString name="$parentText" inherits="GameFontHighlight" text="::: Board :::::::::">
+                                    <Color r="1.0" g="0.82" b="0.0"/>
+                                    <JustifyH value="LEFT"/>
+                                    <Anchors>
+                                        <Anchor point="LEFT" x="0" y="0"/>
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                    </Frame>
+
+                    <!-- 1.22 - Properties Frame (with border) -->
+                    <Frame name="$parentPropertiesFrame">
+                        <Size x="230" y="180"/>
+                        <Anchors>
+                            <Anchor point="TOP" relativeTo="$parentBoardTitle" relativePoint="BOTTOM" x="0" y="-10"/>
+                        </Anchors>
+
+                        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border">
+                            <BackgroundInsets>
+                                <AbsInset left="2" right="2" top="2" bottom="2"/>
+                            </BackgroundInsets>
+                            <EdgeSize val="8"/>
+                            <Color r="0" g="0" b="0" a="0.8"/>
+                        </Backdrop>
+
+                        <Frames>
+                            <!-- 1.22.0 - Scale Field -->
+                            <Frame name="$parentScaleField">
+                                <Size x="200" y="50"/>
+                                <Anchors>
+                                    <Anchor point="TOP" relativeTo="$parent" relativePoint="TOP" x="0" y="-20"/>
+                                </Anchors>
+                                <JustifyH value="CENTER"/>
+                                <Layers>
+                                    <Layer level="ARTWORK">
+                                        <FontString name="$parentLabel" inherits="GameFontNormalSmall" text="Scale">
+                                            <Color r="1.0" g="0.82" b="0.0"/>
+                                            <Anchors>
+                                                <Anchor point="LEFT" x="8" y="0"/>
+                                            </Anchors>
+                                        </FontString>
+                                    </Layer>
+                                </Layers>
+                                <Frames>
+                                    <EditBox name="$parentValueBox" autoFocus="false" inherits="InputBoxTemplate">
+                                        <Size x="35" y="16"/>
+                                        <Anchors>
+                                            <Anchor point="RIGHT" x="-10" y="0"/>
+                                        </Anchors>
+                                    </EditBox>
+                                    <Slider name="$parentSlider" inherits="OptionsSliderTemplate" minValue="0.5" maxValue="2.0" defaultValue="1.0" valueStep="0.1">
+                                        <Size x="200" y="17"/>
+                                        <Anchors>
+                                            <Anchor point="BOTTOM" x="0" y="6"/>
+                                        </Anchors>
+                                        <Low> </Low>
+                                        <High> </High>
+                                    </Slider>
+                                </Frames>
+                            </Frame>
+
+                            <!-- 1.22.1 - Position X Field -->
+                            <Frame name="$parentPositionXField">
+                                <Size x="200" y="50"/>
+                                <Anchors>
+                                    <Anchor point="TOP" relativeTo="$parentScaleField" relativePoint="BOTTOM" x="0" y="-20"/>
+                                </Anchors>
+                                <JustifyH value="CENTER"/>
+                                <Layers>
+                                    <Layer level="ARTWORK">
+                                        <FontString name="$parentLabel" inherits="GameFontNormalSmall" text="Position X">
+                                            <Color r="1.0" g="0.82" b="0.0"/>
+                                            <Anchors>
+                                                <Anchor point="LEFT" x="8" y="0"/>
+                                            </Anchors>
+                                        </FontString>
+                                    </Layer>
+                                </Layers>
+                                <Frames>
+                                    <EditBox name="$parentValueBox" autoFocus="false" inherits="InputBoxTemplate">
+                                        <Size x="35" y="16"/>
+                                        <Anchors>
+                                            <Anchor point="RIGHT" x="-10" y="0"/>
+                                        </Anchors>
+                                    </EditBox>
+                                    <Slider name="$parentSlider" inherits="OptionsSliderTemplate" minValue="-100" maxValue="100" defaultValue="0" valueStep="1">
+                                        <Size x="200" y="17"/>
+                                        <Anchors>
+                                            <Anchor point="BOTTOM" x="0" y="6"/>
+                                        </Anchors>
+                                        <Low> </Low>
+                                        <High> </High>
+                                    </Slider>
+                                </Frames>
+                            </Frame>
+
+                            <!-- 1.22.2 - Position Y Field -->
+                            <Frame name="$parentPositionYField">
+                                <Size x="200" y="50"/>
+                                <Anchors>
+                                    <Anchor point="TOP" relativeTo="$parentPositionXField" relativePoint="BOTTOM" x="0" y="-20"/>
+                                </Anchors>
+                                <JustifyH value="CENTER"/>
+                                <Layers>
+                                    <Layer level="ARTWORK">
+                                        <FontString name="$parentLabel" inherits="GameFontNormalSmall" text="Position Y">
+                                            <Color r="1.0" g="0.82" b="0.0"/>
+                                            <Anchors>
+                                                <Anchor point="LEFT" x="8" y="0"/>
+                                            </Anchors>
+                                        </FontString>
+                                    </Layer>
+                                </Layers>
+                                <Frames>
+                                    <EditBox name="$parentValueBox" autoFocus="false" inherits="InputBoxTemplate">
+                                        <Size x="35" y="16"/>
+                                        <Anchors>
+                                            <Anchor point="RIGHT" x="-10" y="0"/>
+                                        </Anchors>
+                                    </EditBox>
+                                    <Slider name="$parentSlider" inherits="OptionsSliderTemplate" minValue="-100" maxValue="100" defaultValue="0" valueStep="1">
+                                        <Size x="200" y="17"/>
+                                        <Anchors>
+                                            <Anchor point="BOTTOM" x="0" y="6"/>
+                                        </Anchors>
+                                        <Low> </Low>
+                                        <High> </High>
+                                        <ValueStep>1</ValueStep>
+                                    </Slider>
+                                </Frames>
+                            </Frame>
+                        </Frames>
+                    </Frame>
+                </Frames>
+            </Frame>
+        </Frames>
+    </Frame>
+</Ui>

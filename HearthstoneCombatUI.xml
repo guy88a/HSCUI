@@ -1,49 +1,43 @@
+<!--
+HearthstoneCombatUI - Main XML
+Author: Chiieflady
+Version: 1.0
+-->
+
 <Ui xmlns="http://www.blizzard.com/wow/ui/"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
 
-  <!-- ===================================== -->
-  <!-- Hearthstone Combat UI - Main File     -->
-  <!-- ===================================== -->
-  <!--
-    Root XML for the Hearthstone Combat UI addon.
-    Defines the main container frame and then includes all component XMLs.
+    <!-- Main Parent Frame -->
+    <Frame name="HSCUI_MainFrame" hidden="false" movable="true" enableMouse="true" clampedToScreen="true" frameStrata="HIGH">
+        <Size>
+            <AbsDimension x="512" y="256"/>
+        </Size>
+        <Anchors>
+            <Anchor point="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="-100"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
 
-    Components:
-      - Trait Component (weapon swing + combo tracking)
-      - Resource Component (energy/rage/mana + combo bar)
-      - Abilities Component (3 Hearthstone-style cards)
+        <!-- Temporary visual background and border -->
+        <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+            <TileSize val="32"/>
+            <EdgeSize val="16"/>
+            <BackgroundInsets>
+                <AbsInset left="5" right="5" top="5" bottom="5"/>
+            </BackgroundInsets>
+        </Backdrop>
 
-    NOTE: The main frame is declared BEFORE includes so child frames
-          can safely use parent="HSCUI_MainFrame" and anchor to it.
-  -->
+        <!-- Load Trait Component -->
+        <Include file="Components\Trait\Trait.xml"/>
 
-  <!-- ===================================== -->
-  <!-- Root Container                        -->
-  <!-- ===================================== -->
-  <!--
-    HSCUI_MainFrame serves as the parent frame for all components.
-    It doesn't draw art by itself; it only provides a common anchor/scale.
-  -->
-  <Frame name="HSCUI_MainFrame" hidden="true" frameStrata="HIGH">
-    <Size>
-      <AbsDimension x="512" y="512"/>
-    </Size>
+        <!-- Load Resource Component -->
+        <Include file="Components\Resources\Resources.xml"/>
 
-    <!-- Position: Centered on screen (adjust offsets to move the whole UI) -->
-    <Anchors>
-      <Anchor point="CENTER">
-        <Offset><AbsDimension x="0" y="-60"/></Offset>
-      </Anchor>
-    </Anchors>
-  </Frame>
+        <!-- Load Abilities Component -->
+        <Include file="Components\Abilities\Abilities.xml"/>
 
-  <!-- ===================================== -->
-  <!-- Includes (children expect the parent) -->
-  <!-- ===================================== -->
-  <!-- Each component file defines its own frame & layout, parented to Main. -->
-  <Include file="HSCUI_Trait.xml"/>
-  <Include file="HSCUI_Abilities.xml"/>
-  <Include file="HSCUI_Resource.xml"/>
-
+    </Frame>
 </Ui>
