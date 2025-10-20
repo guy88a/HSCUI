@@ -5,6 +5,9 @@
 ## Notes: Hearthstone-style combat UI for WoW 1.12
 ## DefaultState: enabled
 
+## SavedVariables: HSCUI_GlobalConfig
+## SavedVariablesPerCharacter: HSCUI_CharacterConfig
+
 # Core initialization
 HearthstoneCombatUI.lua
 
