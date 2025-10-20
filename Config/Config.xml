@@ -1,19 +1,42 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
     <!--
     HearthstoneCombatUI - Config Window (1.12-compatible)
-    Dark background, toggled with /hscui
+    Fixed: Correct TGA handling and restored proper border backdrop.
     -->
 
     <!-- 1 - Main Dialog -->
     <Frame name="HSCUI_ConfigFrame" hidden="true" movable="true" enableMouse="true" toplevel="true" frameStrata="DIALOG" frameLevel="10">
-        <Size x="250" y="460"/>
+        <Size x="250" y="380"/>
         <Anchors>
             <Anchor point="CENTER"/>
         </Anchors>
 
-        <!-- Main Background -->
-        <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
-            <TileSize val="32"/>
+        <!-- Proper Backdrop (1.12-compatible) -->
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture name="$parentBackground"
+                        file="Interface\AddOns\HearthstoneCombatUI\Media\General\dialog_wooden_bg_alpha.tga"
+                        tile="true">
+                    <Anchors>
+                        <Anchor point="TOPLEFT"/>
+                        <Anchor point="BOTTOMRIGHT"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+
+            <Layer level="BACKGROUND">
+                <Texture name="$parentBackground"
+                        file="Interface\AddOns\HearthstoneCombatUI\Media\General\dialog_page_bg_alpha.tga"
+                        tile="true">
+                    <Anchors>
+                        <Anchor point="TOPLEFT"/>
+                        <Anchor point="BOTTOMRIGHT"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
+
+        <Backdrop edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="false">
             <EdgeSize val="16"/>
             <BackgroundInsets>
                 <AbsInset left="5" right="5" top="5" bottom="5"/>

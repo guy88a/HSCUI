@@ -39,10 +39,26 @@ local function HSCUI_Config_InitDefaults()
         scaleBox:SetText(string.format("%.1f", defaultScale))
         scaleSlider:SetValue(defaultScale)
 
+        -- Slider → EditBox + Frame
         scaleSlider:SetScript("OnValueChanged", function()
             local v = this:GetValue()
             if v then
                 scaleBox:SetText(string.format("%.1f", v))
+                if HSCUI_MainFrame then
+                    HSCUI_MainFrame:SetScale(v)
+                end
+            end
+        end)
+
+        -- EditBox → Slider + Frame
+        scaleBox:SetScript("OnTextChanged", function()
+            local v = tonumber(this:GetText())
+            if v then
+                if v < 0.5 then v = 0.5 elseif v > 2.0 then v = 2.0 end -- Safe range
+                scaleSlider:SetValue(v)
+                if HSCUI_MainFrame then
+                    HSCUI_MainFrame:SetScale(v)
+                end
             end
         end)
     end
