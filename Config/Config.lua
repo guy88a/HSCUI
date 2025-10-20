@@ -25,37 +25,59 @@ SlashCmdList["HSCUI"] = function()
     end
 end
 
+-- Layout data structure (filled later when elements exist)
+local layoutData = {
+    sections = {
+        {
+            elements = {},
+            properties = {
+                scale = 1.0,
+                posX = 0,
+                posY = 0,
+            }
+        }
+    }
+}
+
 -- Initialize default config values
 local function HSCUI_Config_InitDefaults()
-    local defaultScale = 1.0
-    local defaultPosX = 0
-    local defaultPosY = 0
+    local data = layoutData.sections[1]
+    local p = data.properties
 
-    -- Scale Field
-    if HSCUI_ConfigFrameBoardSectionPropertiesFrameScaleFieldValueBox and HSCUI_ConfigFrameBoardSectionPropertiesFrameScaleFieldSlider then
-        local scaleSlider = HSCUI_ConfigFrameBoardSectionPropertiesFrameScaleFieldSlider
-        local scaleBox = HSCUI_ConfigFrameBoardSectionPropertiesFrameScaleFieldValueBox
-        
-        scaleBox:SetText(string.format("%.1f", defaultScale))
-        scaleSlider:SetValue(defaultScale)
+    -- Retrieve UI elements dynamically (now guaranteed to exist)
+    data.elements = {
+        scaleSlider = HSCUI_ConfigFrameBoardSectionPropertiesFrameScaleFieldSlider,
+        scaleBox = HSCUI_ConfigFrameBoardSectionPropertiesFrameScaleFieldValueBox,
+        posXSlider = HSCUI_ConfigFrameBoardSectionPropertiesFramePositionXFieldSlider,
+        posXBox = HSCUI_ConfigFrameBoardSectionPropertiesFramePositionXFieldValueBox,
+        posYSlider = HSCUI_ConfigFrameBoardSectionPropertiesFramePositionYFieldSlider,
+        posYBox = HSCUI_ConfigFrameBoardSectionPropertiesFramePositionYFieldValueBox,
+    }
 
-        -- Slider → EditBox + Frame
-        scaleSlider:SetScript("OnValueChanged", function()
+    local e = data.elements
+
+    -- SCALE ----------------------------
+    if e.scaleSlider and e.scaleBox then
+        e.scaleBox:SetText(string.format("%.1f", p.scale))
+        e.scaleSlider:SetValue(p.scale)
+
+        e.scaleSlider:SetScript("OnValueChanged", function()
             local v = this:GetValue()
             if v then
-                scaleBox:SetText(string.format("%.1f", v))
+                p.scale = v
+                e.scaleBox:SetText(string.format("%.1f", v))
                 if HSCUI_MainFrame then
                     HSCUI_MainFrame:SetScale(v)
                 end
             end
         end)
 
-        -- EditBox → Slider + Frame
-        scaleBox:SetScript("OnTextChanged", function()
+        e.scaleBox:SetScript("OnTextChanged", function()
             local v = tonumber(this:GetText())
             if v then
-                if v < 0.5 then v = 0.5 elseif v > 2.0 then v = 2.0 end -- Safe range
-                scaleSlider:SetValue(v)
+                if v < 0.5 then v = 0.5 elseif v > 2.0 then v = 2.0 end
+                p.scale = v
+                e.scaleSlider:SetValue(v)
                 if HSCUI_MainFrame then
                     HSCUI_MainFrame:SetScale(v)
                 end
@@ -63,34 +85,68 @@ local function HSCUI_Config_InitDefaults()
         end)
     end
 
-    -- Position X Field
-    if HSCUI_ConfigFrameBoardSectionPropertiesFramePositionXFieldValueBox and HSCUI_ConfigFrameBoardSectionPropertiesFramePositionXFieldSlider then
-        local xSlider = HSCUI_ConfigFrameBoardSectionPropertiesFramePositionXFieldSlider
-        local xBox = HSCUI_ConfigFrameBoardSectionPropertiesFramePositionXFieldValueBox
+    -- POSITION X ----------------------------
+    if e.posXSlider and e.posXBox then
+        e.posXBox:SetText(tostring(p.posX))
+        e.posXSlider:SetValue(p.posX)
 
-        xBox:SetText(tostring(defaultPosX))
-        xSlider:SetValue(0)
-
-        xSlider:SetScript("OnValueChanged", function()
+        e.posXSlider:SetScript("OnValueChanged", function()
             local v = this:GetValue()
             if v then
-                xBox:SetText(string.format("%d", v))
+                p.posX = v
+                e.posXBox:SetText(string.format("%d", v))
+                if HSCUI_MainFrame then
+                    local _, _, _, _, y = HSCUI_MainFrame:GetPoint()
+                    HSCUI_MainFrame:ClearAllPoints()
+                    HSCUI_MainFrame:SetPoint("CENTER", UIParent, "CENTER", v, y or -100)
+                end
+            end
+        end)
+
+        e.posXBox:SetScript("OnTextChanged", function()
+            local v = tonumber(this:GetText())
+            if v then
+                p.posX = v
+                e.posXSlider:SetValue(v)
+                if HSCUI_MainFrame then
+                    local _, _, _, _, y = HSCUI_MainFrame:GetPoint()
+                    HSCUI_MainFrame:ClearAllPoints()
+                    HSCUI_MainFrame:SetPoint("CENTER", UIParent, "CENTER", v, y or -100)
+                end
             end
         end)
     end
 
-    -- Position Y Field
-    if HSCUI_ConfigFrameBoardSectionPropertiesFramePositionYFieldValueBox and HSCUI_ConfigFrameBoardSectionPropertiesFramePositionYFieldSlider then
-        local ySlider = HSCUI_ConfigFrameBoardSectionPropertiesFramePositionYFieldSlider
-        local yBox = HSCUI_ConfigFrameBoardSectionPropertiesFramePositionYFieldValueBox
+    -- POSITION Y ----------------------------
+    if e.posYSlider and e.posYBox then
+        e.posYBox:SetText(tostring(p.posY))
+        e.posYSlider:SetValue(p.posY)
 
-        yBox:SetText(tostring(defaultPosY))
-        ySlider:SetValue(0)
-
-        ySlider:SetScript("OnValueChanged", function()
+        e.posYSlider:SetScript("OnValueChanged", function()
             local v = this:GetValue()
             if v then
-                yBox:SetText(string.format("%d", v))
+                p.posY = v
+                e.posYBox:SetText(string.format("%d", v))
+                if HSCUI_MainFrame then
+                    local _, _, _, x, _ = HSCUI_MainFrame:GetPoint()
+                    local adjustedY = v - 100
+                    HSCUI_MainFrame:ClearAllPoints()
+                    HSCUI_MainFrame:SetPoint("CENTER", UIParent, "CENTER", x or 0, adjustedY)
+                end
+            end
+        end)
+
+        e.posYBox:SetScript("OnTextChanged", function()
+            local v = tonumber(this:GetText())
+            if v then
+                p.posY = v
+                e.posYSlider:SetValue(v)
+                if HSCUI_MainFrame then
+                    local _, _, _, x, _ = HSCUI_MainFrame:GetPoint()
+                    local adjustedY = v - 100
+                    HSCUI_MainFrame:ClearAllPoints()
+                    HSCUI_MainFrame:SetPoint("CENTER", UIParent, "CENTER", x or 0, adjustedY)
+                end
             end
         end)
     end
