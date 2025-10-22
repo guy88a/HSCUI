@@ -5,57 +5,60 @@
     -->
 
     <!-- 1 - Main Dialog -->
-    <Frame name="HSCUI_ConfigFrame" hidden="true" movable="true" enableMouse="true" toplevel="true" frameStrata="DIALOG" frameLevel="10">
-        <Size x="250" y="380"/>
+    <Frame name="HSCUI_ConfigFrame" hidden="true" movable="true" enableMouse="true" toplevel="true"
+        frameStrata="DIALOG" frameLevel="10">
+        <Size x="260" y="360" />
         <Anchors>
-            <Anchor point="CENTER"/>
+            <Anchor point="CENTER" />
         </Anchors>
 
         <!-- Proper Backdrop (1.12-compatible) -->
         <Layers>
             <Layer level="BACKGROUND">
                 <Texture name="$parentBackground"
-                        file="Interface\AddOns\HearthstoneCombatUI\Media\General\dialog_wooden_bg_alpha.tga"
-                        tile="true">
+                    file="Interface\AddOns\HearthstoneCombatUI\Media\General\dialog_wooden_bg_alpha.tga"
+                    tile="true">
                     <Anchors>
-                        <Anchor point="TOPLEFT"/>
-                        <Anchor point="BOTTOMRIGHT"/>
+                        <Anchor point="TOPLEFT" />
+                        <Anchor point="BOTTOMRIGHT" />
                     </Anchors>
                 </Texture>
             </Layer>
 
-            <Layer level="BACKGROUND">
+            <!-- <Layer level="BACKGROUND">
                 <Texture name="$parentBackground"
-                        file="Interface\AddOns\HearthstoneCombatUI\Media\General\dialog_page_bg_alpha.tga"
-                        tile="true">
+                    file="Interface\AddOns\HearthstoneCombatUI\Media\General\dialog_page_bg_alpha.tga"
+                    tile="true">
                     <Anchors>
-                        <Anchor point="TOPLEFT"/>
-                        <Anchor point="BOTTOMRIGHT"/>
+                        <Anchor point="TOPLEFT" />
+                        <Anchor point="BOTTOMRIGHT" />
                     </Anchors>
                 </Texture>
-            </Layer>
+            </Layer> -->
         </Layers>
 
-        <Backdrop edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="false">
-            <EdgeSize val="16"/>
+        <Backdrop edgeFile="Interface\AddOns\HearthstoneCombatUI\Media\General\dialog_border_8slice.tga">
+            <EdgeSize>
+                <AbsValue val="16" />
+            </EdgeSize>
             <BackgroundInsets>
-                <AbsInset left="5" right="5" top="5" bottom="5"/>
+                <AbsInset left="5" right="5" top="5" bottom="5" />
             </BackgroundInsets>
         </Backdrop>
 
         <Frames>
             <!-- 1.1 - Main Title -->
             <Frame name="$parentMainTitle">
-                <Size x="250" y="40"/>
+                <Size x="260" y="45" />
                 <Anchors>
-                    <Anchor point="TOP" x="0" y="-10"/>
+                    <Anchor point="TOP" x="0" y="-10" />
                 </Anchors>
                 <Layers>
                     <Layer level="ARTWORK">
                         <FontString name="$parentText" inherits="GameFontNormalLarge" text="HSCUI Config">
-                            <Color r="1.0" g="1.0" b="1.0"/>
+                            <Color r="1.0" g="1.0" b="1.0" />
                             <Anchors>
-                                <Anchor point="CENTER"/>
+                                <Anchor point="CENTER" />
                             </Anchors>
                         </FontString>
                     </Layer>
@@ -64,75 +67,87 @@
 
             <!-- 1.2 - Board Section -->
             <Frame name="$parentBoardSection">
-                <Size x="230" y="360"/>
+                <Size x="210" y="360" />
                 <Anchors>
-                    <Anchor point="TOP" relativeTo="$parentMainTitle" relativePoint="BOTTOM" x="0" y="-10"/>
+                    <Anchor point="TOP" relativeTo="$parentMainTitle" relativePoint="BOTTOM" x="0" y="-10" />
                 </Anchors>
 
                 <Frames>
                     <!-- 1.21 - Board Title -->
                     <Frame name="$parentBoardTitle">
-                        <Size x="230" y="30"/>
+                        <Size x="210" y="35" />
                         <Anchors>
-                            <Anchor point="TOPLEFT" x="10" y="0"/>
+                            <Anchor point="TOPLEFT" x="10" y="0" />
                         </Anchors>
                         <Layers>
                             <Layer level="ARTWORK">
                                 <FontString name="$parentText" inherits="GameFontHighlight" text="::: Board :::::::::">
-                                    <Color r="1.0" g="0.82" b="0.0"/>
-                                    <JustifyH value="LEFT"/>
+                                    <Color r="1.0" g="0.82" b="0.0" />
+                                    <JustifyH value="LEFT" />
                                     <Anchors>
-                                        <Anchor point="LEFT" x="0" y="0"/>
+                                        <Anchor point="LEFT" x="0" y="0" />
                                     </Anchors>
                                 </FontString>
                             </Layer>
                         </Layers>
                     </Frame>
 
-                    <!-- 1.22 - Properties Frame (with border) -->
+                    <!-- 1.22 - Properties Frame -->
                     <Frame name="$parentPropertiesFrame">
-                        <Size x="230" y="180"/>
+                        <Size x="240" y="220" />
                         <Anchors>
-                            <Anchor point="TOP" relativeTo="$parentBoardTitle" relativePoint="BOTTOM" x="0" y="-10"/>
+                            <Anchor point="TOP" relativeTo="$parentBoardTitle" relativePoint="BOTTOM" x="0" y="-10" />
                         </Anchors>
 
-                        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border">
-                            <BackgroundInsets>
-                                <AbsInset left="2" right="2" top="2" bottom="2"/>
-                            </BackgroundInsets>
-                            <EdgeSize val="8"/>
-                            <Color r="0" g="0" b="0" a="0.8"/>
-                        </Backdrop>
+                        <Layers>
+                            <Layer level="BACKGROUND">
+                                <Texture name="$parentBackground"
+                                    file="Interface\AddOns\HearthstoneCombatUI\Media\General\dialog_page_bg_alpha.tga"
+                                    tile="true">
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT" />
+                                        <Anchor point="BOTTOMRIGHT" />
+                                    </Anchors>
+                                </Texture>
+                            </Layer>
+                        </Layers>
 
                         <Frames>
                             <!-- 1.22.0 - Scale Field -->
                             <Frame name="$parentScaleField">
-                                <Size x="200" y="50"/>
+                                <Size x="200" y="50" />
+                                <!-- <Anchors>
+                                    <Anchor point="TOP" relativeTo="$parent" relativePoint="TOP" x="0" y="-20" />
+                                </Anchors> -->
                                 <Anchors>
-                                    <Anchor point="TOP" relativeTo="$parent" relativePoint="TOP" x="0" y="-20"/>
+                                    <Anchor point="TOP" relativeTo="$parent" relativePoint="TOP">
+                                        <Offset>
+                                            <AbsDimension x="0" y="-20"/>
+                                        </Offset>
+                                    </Anchor>
                                 </Anchors>
-                                <JustifyH value="CENTER"/>
+
                                 <Layers>
                                     <Layer level="ARTWORK">
                                         <FontString name="$parentLabel" inherits="GameFontNormalSmall" text="Scale">
-                                            <Color r="1.0" g="0.82" b="0.0"/>
+                                            <Color r="1.0" g="0.82" b="0.0" />
                                             <Anchors>
-                                                <Anchor point="LEFT" x="8" y="0"/>
+                                                <Anchor point="LEFT" x="8" y="0" />
                                             </Anchors>
                                         </FontString>
                                     </Layer>
                                 </Layers>
                                 <Frames>
                                     <EditBox name="$parentValueBox" autoFocus="false" inherits="InputBoxTemplate">
-                                        <Size x="35" y="16"/>
+                                        <Size x="35" y="16" />
                                         <Anchors>
-                                            <Anchor point="RIGHT" x="-10" y="0"/>
+                                            <Anchor point="RIGHT" x="-10" y="0" />
                                         </Anchors>
                                     </EditBox>
                                     <Slider name="$parentSlider" inherits="OptionsSliderTemplate" minValue="0.5" maxValue="2.0" defaultValue="1.0" valueStep="0.1">
-                                        <Size x="200" y="17"/>
+                                        <Size x="200" y="17" />
                                         <Anchors>
-                                            <Anchor point="BOTTOM" x="0" y="6"/>
+                                            <Anchor point="BOTTOM" x="0" y="6" />
                                         </Anchors>
                                         <Low> </Low>
                                         <High> </High>
@@ -142,32 +157,31 @@
 
                             <!-- 1.22.1 - Position X Field -->
                             <Frame name="$parentPositionXField">
-                                <Size x="200" y="50"/>
+                                <Size x="200" y="50" />
                                 <Anchors>
-                                    <Anchor point="TOP" relativeTo="$parentScaleField" relativePoint="BOTTOM" x="0" y="-20"/>
+                                    <Anchor point="TOP" relativeTo="$parentScaleField" relativePoint="BOTTOM" x="0" y="-20" />
                                 </Anchors>
-                                <JustifyH value="CENTER"/>
                                 <Layers>
                                     <Layer level="ARTWORK">
                                         <FontString name="$parentLabel" inherits="GameFontNormalSmall" text="Position X">
-                                            <Color r="1.0" g="0.82" b="0.0"/>
+                                            <Color r="1.0" g="0.82" b="0.0" />
                                             <Anchors>
-                                                <Anchor point="LEFT" x="8" y="0"/>
+                                                <Anchor point="LEFT" x="8" y="0" />
                                             </Anchors>
                                         </FontString>
                                     </Layer>
                                 </Layers>
                                 <Frames>
                                     <EditBox name="$parentValueBox" autoFocus="false" inherits="InputBoxTemplate">
-                                        <Size x="35" y="16"/>
+                                        <Size x="35" y="16" />
                                         <Anchors>
-                                            <Anchor point="RIGHT" x="-10" y="0"/>
+                                            <Anchor point="RIGHT" x="-10" y="0" />
                                         </Anchors>
                                     </EditBox>
                                     <Slider name="$parentSlider" inherits="OptionsSliderTemplate" minValue="-100" maxValue="100" defaultValue="0" valueStep="1">
-                                        <Size x="200" y="17"/>
+                                        <Size x="200" y="17" />
                                         <Anchors>
-                                            <Anchor point="BOTTOM" x="0" y="6"/>
+                                            <Anchor point="BOTTOM" x="0" y="6" />
                                         </Anchors>
                                         <Low> </Low>
                                         <High> </High>
@@ -177,41 +191,105 @@
 
                             <!-- 1.22.2 - Position Y Field -->
                             <Frame name="$parentPositionYField">
-                                <Size x="200" y="50"/>
+                                <Size x="200" y="50" />
                                 <Anchors>
-                                    <Anchor point="TOP" relativeTo="$parentPositionXField" relativePoint="BOTTOM" x="0" y="-20"/>
+                                    <Anchor point="TOP" relativeTo="$parentPositionXField" relativePoint="BOTTOM" x="0" y="-20" />
                                 </Anchors>
-                                <JustifyH value="CENTER"/>
                                 <Layers>
                                     <Layer level="ARTWORK">
                                         <FontString name="$parentLabel" inherits="GameFontNormalSmall" text="Position Y">
-                                            <Color r="1.0" g="0.82" b="0.0"/>
+                                            <Color r="1.0" g="0.82" b="0.0" />
                                             <Anchors>
-                                                <Anchor point="LEFT" x="8" y="0"/>
+                                                <Anchor point="LEFT" x="8" y="0" />
                                             </Anchors>
                                         </FontString>
                                     </Layer>
                                 </Layers>
                                 <Frames>
                                     <EditBox name="$parentValueBox" autoFocus="false" inherits="InputBoxTemplate">
-                                        <Size x="35" y="16"/>
+                                        <Size x="35" y="16" />
                                         <Anchors>
-                                            <Anchor point="RIGHT" x="-10" y="0"/>
+                                            <Anchor point="RIGHT" x="-10" y="0" />
                                         </Anchors>
                                     </EditBox>
                                     <Slider name="$parentSlider" inherits="OptionsSliderTemplate" minValue="-100" maxValue="100" defaultValue="0" valueStep="1">
-                                        <Size x="200" y="17"/>
+                                        <Size x="200" y="17" />
                                         <Anchors>
-                                            <Anchor point="BOTTOM" x="0" y="6"/>
+                                            <Anchor point="BOTTOM" x="0" y="6" />
                                         </Anchors>
                                         <Low> </Low>
                                         <High> </High>
-                                        <ValueStep>1</ValueStep>
                                     </Slider>
                                 </Frames>
                             </Frame>
                         </Frames>
                     </Frame>
+                </Frames>
+            </Frame>
+
+            <!-- Bottom Navbar -->
+            <Frame name="$parentBottomNav">
+                <Size x="240" y="30" />
+                <Anchors>
+                    <Anchor point="BOTTOM" relativeTo="$parent" relativePoint="BOTTOM">
+                        <Offset>
+                            <AbsDimension x="0" y="10"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+
+                <Frames>
+                    <Button name="$parentButton1" inherits="UIPanelButtonTemplate">
+                        <Size x="60" y="30" />
+                        <Anchors>
+                            <Anchor point="BOTTOMLEFT" x="4" y="0" />
+                        </Anchors>
+                        <NormalTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\navbutton_board_normal.tga">
+                            <TexCoords left="0" right="1" top="0.2465" bottom="0.7535" />
+                        </NormalTexture>
+                        <PushedTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\navbutton_board_pushed.tga">
+                            <TexCoords left="0" right="1" top="0.2465" bottom="0.7535" />
+                        </PushedTexture>
+                    </Button>
+
+                    <Button name="$parentButton2" inherits="UIPanelButtonTemplate">
+                        <Size x="60" y="30" />
+                        <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentButton1" relativePoint="RIGHT" x="12" y="0" />
+                        </Anchors>
+                        <NormalTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\navbutton_cards_normal.tga">
+                            <TexCoords left="0" right="1" top="0.2465" bottom="0.7535" />
+                        </NormalTexture>
+                        <PushedTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\navbutton_cards_pushed.tga">
+                            <TexCoords left="0" right="1" top="0.2465" bottom="0.7535" />
+                        </PushedTexture>
+                    </Button>
+
+                    <Button name="$parentButton3" inherits="UIPanelButtonTemplate">
+                        <Size x="60" y="30" />
+                        <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentButton2" relativePoint="RIGHT" x="12" y="0" />
+                        </Anchors>
+                        <NormalTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\navbutton_resources_normal.tga">
+                            <TexCoords left="0" right="1" top="0.2465" bottom="0.7535" />
+                        </NormalTexture>
+                        <PushedTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\navbutton_resources_pushed.tga">
+                            <TexCoords left="0" right="1" top="0.2465" bottom="0.7535" />
+                        </PushedTexture>
+                    </Button>
+
+                    <Button name="$parentButton4" inherits="UIPanelButtonTemplate">
+                        <Size x="60" y="30" />
+                        <Anchors>
+                            <Anchor point="LEFT" relativeTo="$parentButton3" relativePoint="RIGHT" x="12" y="0" />
+                        </Anchors>
+                        <NormalTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\navbutton_misc_normal.tga">
+                            <TexCoords left="0" right="1" top="0.2465" bottom="0.7535" />
+                        </NormalTexture>
+                        <PushedTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\navbutton_misc_pushed.tga">
+                            <TexCoords left="0" right="1" top="0.2465" bottom="0.7535" />
+                        </PushedTexture>
+                    </Button>
                 </Frames>
             </Frame>
         </Frames>

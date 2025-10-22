@@ -9,7 +9,7 @@ Version: 1.0
     xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
 
     <!-- Main Parent Frame -->
-    <Frame name="HSCUI_MainFrame" hidden="false" movable="true" enableMouse="true" clampedToScreen="true" frameStrata="HIGH">
+    <Frame name="HSCUI_MainFrame" hidden="true" movable="true" enableMouse="true" clampedToScreen="true" frameStrata="HIGH">
         <Size>
             <AbsDimension x="512" y="256"/>
         </Size>

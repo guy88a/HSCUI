@@ -2,9 +2,10 @@
 ---------------------------------------
 HearthstoneCombatUI - Config
 Author: Chiieflady
-Version: 1.0
+Version: 1.1
 
 Handles the configuration window toggle via /hscui command.
+Adds per-character SavedVariables support (HSCUI_CharacterConfig).
 ---------------------------------------
 ]]
 
@@ -25,27 +26,29 @@ SlashCmdList["HSCUI"] = function()
     end
 end
 
--- Layout data structure (filled later when elements exist)
-local layoutData = {
-    sections = {
-        {
-            elements = {},
-            properties = {
-                scale = 1.0,
-                posX = 0,
-                posY = 0,
-            }
+-- Ensure SavedVariables table exists
+local function HSCUI_EnsureCharacterConfig()
+    if not HSCUI_CharacterConfig then
+        HSCUI_CharacterConfig = {
+            scale = 1.0,
+            posX = 0,
+            posY = 0,
         }
-    }
-}
+    else
+        if HSCUI_CharacterConfig.scale == nil then HSCUI_CharacterConfig.scale = 1.0 end
+        if HSCUI_CharacterConfig.posX == nil then HSCUI_CharacterConfig.posX = 0 end
+        if HSCUI_CharacterConfig.posY == nil then HSCUI_CharacterConfig.posY = 0 end
+    end
+end
 
 -- Initialize default config values
 local function HSCUI_Config_InitDefaults()
-    local data = layoutData.sections[1]
-    local p = data.properties
+    HSCUI_EnsureCharacterConfig()
 
-    -- Retrieve UI elements dynamically (now guaranteed to exist)
-    data.elements = {
+    local p = HSCUI_CharacterConfig
+
+    -- Retrieve UI elements dynamically
+    local e = {
         scaleSlider = HSCUI_ConfigFrameBoardSectionPropertiesFrameScaleFieldSlider,
         scaleBox = HSCUI_ConfigFrameBoardSectionPropertiesFrameScaleFieldValueBox,
         posXSlider = HSCUI_ConfigFrameBoardSectionPropertiesFramePositionXFieldSlider,
@@ -53,8 +56,6 @@ local function HSCUI_Config_InitDefaults()
         posYSlider = HSCUI_ConfigFrameBoardSectionPropertiesFramePositionYFieldSlider,
         posYBox = HSCUI_ConfigFrameBoardSectionPropertiesFramePositionYFieldValueBox,
     }
-
-    local e = data.elements
 
     -- SCALE ----------------------------
     if e.scaleSlider and e.scaleBox then
@@ -150,6 +151,13 @@ local function HSCUI_Config_InitDefaults()
             end
         end)
     end
+
+    -- Apply saved scale/position on load
+    if HSCUI_MainFrame then
+        HSCUI_MainFrame:SetScale(p.scale or 1.0)
+        HSCUI_MainFrame:ClearAllPoints()
+        HSCUI_MainFrame:SetPoint("CENTER", UIParent, "CENTER", p.posX or 0, (p.posY or 0) - 100)
+    end
 end
 
 -- Make frame movable when loaded
@@ -175,4 +183,4 @@ else
 end
 
 -- Initialization message
-DEFAULT_CHAT_FRAME:AddMessage("HSCUI: Config module loaded.")
+DEFAULT_CHAT_FRAME:AddMessage("HSCUI: Config module loaded with per-character data.")
