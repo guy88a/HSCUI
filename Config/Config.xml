@@ -16,7 +16,7 @@
         <Layers>
             <Layer level="BACKGROUND">
                 <Texture name="$parentBackground"
-                    file="Interface\AddOns\HearthstoneCombatUI\Media\General\dialog_wooden_bg_alpha.tga"
+                    file="Interface\AddOns\HearthstoneCombatUI\Media\General\Config\dialog_wooden_bg_1.tga"
                     tile="true">
                     <Anchors>
                         <Anchor point="TOPLEFT" />
@@ -24,20 +24,9 @@
                     </Anchors>
                 </Texture>
             </Layer>
-
-            <!-- <Layer level="BACKGROUND">
-                <Texture name="$parentBackground"
-                    file="Interface\AddOns\HearthstoneCombatUI\Media\General\dialog_page_bg_alpha.tga"
-                    tile="true">
-                    <Anchors>
-                        <Anchor point="TOPLEFT" />
-                        <Anchor point="BOTTOMRIGHT" />
-                    </Anchors>
-                </Texture>
-            </Layer> -->
         </Layers>
 
-        <Backdrop edgeFile="Interface\AddOns\HearthstoneCombatUI\Media\General\dialog_border_8slice.tga">
+        <Backdrop edgeFile="Interface\AddOns\HearthstoneCombatUI\Media\General\Config\dialog_border_2b_8slice.tga">
             <EdgeSize>
                 <AbsValue val="16" />
             </EdgeSize>
@@ -54,11 +43,33 @@
                     <Anchor point="TOP" x="0" y="-10" />
                 </Anchors>
                 <Layers>
+                    <Layer level="BACKGROUND">
+                        <Texture name="$parentTitleBG"
+                            file="Interface\AddOns\HearthstoneCombatUI\Media\General\Config\dialog_title_strip.tga"
+                            alphaMode="BLEND">
+                            <Size x="250" y="64" />
+                            <!-- <Anchors>
+                                <Anchor point="CENTER" />
+                            </Anchors> -->
+                            <Anchors>
+                                <Anchor point="CENTER" relativeTo="$parent" relativePoint="BOTTOM">
+                                    <Offset>
+                                        <AbsDimension x="0" y="-6"/>
+                                    </Offset>
+                                </Anchor>
+                            </Anchors>
+                            <TexCoords left="0" right="1" top="0.365" bottom="0.635" />
+                        </Texture>
+                    </Layer>
                     <Layer level="ARTWORK">
-                        <FontString name="$parentText" inherits="GameFontNormalLarge" text="HSCUI Config">
+                        <FontString name="$parentText" inherits="GameFontHighlightLarge" text="">
                             <Color r="1.0" g="1.0" b="1.0" />
                             <Anchors>
-                                <Anchor point="CENTER" />
+                                <Anchor point="CENTER" relativeTo="$parent" relativePoint="BOTTOM">
+                                    <Offset>
+                                        <AbsDimension x="0" y="5"/>
+                                    </Offset>
+                                </Anchor>
                             </Anchors>
                         </FontString>
                     </Layer>
@@ -68,24 +79,51 @@
             <!-- 1.2 - Board Section -->
             <Frame name="$parentBoardSection">
                 <Size x="210" y="360" />
-                <Anchors>
+                <!-- <Anchors>
                     <Anchor point="TOP" relativeTo="$parentMainTitle" relativePoint="BOTTOM" x="0" y="-10" />
+                </Anchors> -->
+                <Anchors>
+                    <Anchor point="TOP" relativeTo="$parentMainTitle" relativePoint="BOTTOM">
+                        <Offset>
+                            <AbsDimension x="0" y="-10"/>
+                        </Offset>
+                    </Anchor>
                 </Anchors>
 
                 <Frames>
                     <!-- 1.21 - Board Title -->
                     <Frame name="$parentBoardTitle">
-                        <Size x="210" y="35" />
+                        <Size x="210" y="30" />
                         <Anchors>
-                            <Anchor point="TOPLEFT" x="10" y="0" />
+                            <Anchor point="TOP" relativeTo="$parent" relativePoint="TOP">
+                                <Offset>
+                                    <AbsDimension x="-8" y="-10"/>
+                                </Offset>
+                            </Anchor>
                         </Anchors>
+                        
                         <Layers>
-                            <Layer level="ARTWORK">
-                                <FontString name="$parentText" inherits="GameFontHighlight" text="::: Board :::::::::">
-                                    <Color r="1.0" g="0.82" b="0.0" />
-                                    <JustifyH value="LEFT" />
+                            <!-- Background image, purely visual -->
+                            <Layer level="BACKGROUND">
+                                <Texture name="$parentTitleBG"
+                                    file="Interface\AddOns\HearthstoneCombatUI\Media\General\Config\section_title_1.tga"
+                                    alphaMode="BLEND">
+                                    <Size x="100" y="30" />
                                     <Anchors>
-                                        <Anchor point="LEFT" x="0" y="0" />
+                                        <Anchor point="CENTER" x="0" y="0" />
+                                        <Anchor point="CENTER" x="0" y="0" />
+                                    </Anchors>
+                                </Texture>
+                            </Layer>
+
+                            <!-- Text layer -->
+                            <Layer level="ARTWORK">
+                                <FontString name="$parentText" inherits="GameFontHighlight" text="Board">
+                                    <Color r="1.0" g="0.82" b="0.0" />
+                                    <JustifyH value="CENTER" />
+                                    <Size x="100" y="30" />
+                                    <Anchors>
+                                        <Anchor point="CENTER" x="0" y="-10" />
                                     </Anchors>
                                 </FontString>
                             </Layer>
@@ -96,13 +134,17 @@
                     <Frame name="$parentPropertiesFrame">
                         <Size x="240" y="220" />
                         <Anchors>
-                            <Anchor point="TOP" relativeTo="$parentBoardTitle" relativePoint="BOTTOM" x="0" y="-10" />
+                            <Anchor point="TOP" relativeTo="$parent" relativePoint="TOP">
+                                <Offset>
+                                    <AbsDimension x="0" y="-25"/>
+                                </Offset>
+                            </Anchor>
                         </Anchors>
 
                         <Layers>
-                            <Layer level="BACKGROUND">
+                            <Layer level="BORDER">
                                 <Texture name="$parentBackground"
-                                    file="Interface\AddOns\HearthstoneCombatUI\Media\General\dialog_page_bg_alpha.tga"
+                                    file="Interface\AddOns\HearthstoneCombatUI\Media\General\Config\dialog_page_bg_1.tga"
                                     tile="true">
                                     <Anchors>
                                         <Anchor point="TOPLEFT" />
@@ -115,7 +157,7 @@
                         <Frames>
                             <!-- 1.22.0 - Scale Field -->
                             <Frame name="$parentScaleField">
-                                <Size x="200" y="50" />
+                                <Size x="180" y="50" />
                                 <!-- <Anchors>
                                     <Anchor point="TOP" relativeTo="$parent" relativePoint="TOP" x="0" y="-20" />
                                 </Anchors> -->
@@ -145,7 +187,7 @@
                                         </Anchors>
                                     </EditBox>
                                     <Slider name="$parentSlider" inherits="OptionsSliderTemplate" minValue="0.5" maxValue="2.0" defaultValue="1.0" valueStep="0.1">
-                                        <Size x="200" y="17" />
+                                        <Size x="180" y="17" />
                                         <Anchors>
                                             <Anchor point="BOTTOM" x="0" y="6" />
                                         </Anchors>
@@ -157,7 +199,7 @@
 
                             <!-- 1.22.1 - Position X Field -->
                             <Frame name="$parentPositionXField">
-                                <Size x="200" y="50" />
+                                <Size x="180" y="50" />
                                 <Anchors>
                                     <Anchor point="TOP" relativeTo="$parentScaleField" relativePoint="BOTTOM" x="0" y="-20" />
                                 </Anchors>
@@ -179,7 +221,7 @@
                                         </Anchors>
                                     </EditBox>
                                     <Slider name="$parentSlider" inherits="OptionsSliderTemplate" minValue="-100" maxValue="100" defaultValue="0" valueStep="1">
-                                        <Size x="200" y="17" />
+                                        <Size x="180" y="17" />
                                         <Anchors>
                                             <Anchor point="BOTTOM" x="0" y="6" />
                                         </Anchors>
@@ -191,7 +233,7 @@
 
                             <!-- 1.22.2 - Position Y Field -->
                             <Frame name="$parentPositionYField">
-                                <Size x="200" y="50" />
+                                <Size x="180" y="50" />
                                 <Anchors>
                                     <Anchor point="TOP" relativeTo="$parentPositionXField" relativePoint="BOTTOM" x="0" y="-20" />
                                 </Anchors>
@@ -213,7 +255,7 @@
                                         </Anchors>
                                     </EditBox>
                                     <Slider name="$parentSlider" inherits="OptionsSliderTemplate" minValue="-100" maxValue="100" defaultValue="0" valueStep="1">
-                                        <Size x="200" y="17" />
+                                        <Size x="180" y="17" />
                                         <Anchors>
                                             <Anchor point="BOTTOM" x="0" y="6" />
                                         </Anchors>
@@ -233,61 +275,77 @@
                 <Anchors>
                     <Anchor point="BOTTOM" relativeTo="$parent" relativePoint="BOTTOM">
                         <Offset>
-                            <AbsDimension x="0" y="10"/>
+                            <AbsDimension x="0" y="9"/>
                         </Offset>
                     </Anchor>
                 </Anchors>
 
                 <Frames>
                     <Button name="$parentButton1" inherits="UIPanelButtonTemplate">
-                        <Size x="60" y="30" />
+                        <Size x="40" y="40" />
                         <Anchors>
-                            <Anchor point="BOTTOMLEFT" x="4" y="0" />
+                            <Anchor point="LEFT" relativeTo="$parent" relativePoint="LEFT">
+                                <Offset>
+                                    <AbsDimension x="28" y="12"/>
+                                </Offset>
+                            </Anchor>
                         </Anchors>
-                        <NormalTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\navbutton_board_normal.tga">
-                            <TexCoords left="0" right="1" top="0.2465" bottom="0.7535" />
+                        <NormalTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\Config\navbar_button_dice_board.tga">
+                            <!-- <TexCoords left="0" right="1" top="0.2465" bottom="0.7535" /> -->
                         </NormalTexture>
-                        <PushedTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\navbutton_board_pushed.tga">
-                            <TexCoords left="0" right="1" top="0.2465" bottom="0.7535" />
+                        <PushedTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\Config\navbar_button_dice_board_pushed.tga">
+                            <!-- <TexCoords left="0" right="1" top="0.2465" bottom="0.7535" /> -->
                         </PushedTexture>
                     </Button>
 
                     <Button name="$parentButton2" inherits="UIPanelButtonTemplate">
-                        <Size x="60" y="30" />
+                        <Size x="40" y="40" />
                         <Anchors>
-                            <Anchor point="LEFT" relativeTo="$parentButton1" relativePoint="RIGHT" x="12" y="0" />
+                            <Anchor point="RIGHT" relativeTo="$parent" relativePoint="CENTER">
+                                <Offset>
+                                    <AbsDimension x="-5" y="12"/>
+                                </Offset>
+                            </Anchor>
                         </Anchors>
-                        <NormalTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\navbutton_cards_normal.tga">
-                            <TexCoords left="0" right="1" top="0.2465" bottom="0.7535" />
+                        <NormalTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\Config\navbar_button_dice_trait.tga">
+                            <!-- <TexCoords left="0" right="1" top="0.2465" bottom="0.7535" /> -->
                         </NormalTexture>
-                        <PushedTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\navbutton_cards_pushed.tga">
-                            <TexCoords left="0" right="1" top="0.2465" bottom="0.7535" />
+                        <PushedTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\Config\navbar_button_dice_trait_pushed.tga">
+                            <!-- <TexCoords left="0" right="1" top="0.2465" bottom="0.7535" /> -->
                         </PushedTexture>
                     </Button>
 
                     <Button name="$parentButton3" inherits="UIPanelButtonTemplate">
-                        <Size x="60" y="30" />
+                        <Size x="40" y="40" />
                         <Anchors>
-                            <Anchor point="LEFT" relativeTo="$parentButton2" relativePoint="RIGHT" x="12" y="0" />
+                            <Anchor point="LEFT" relativeTo="$parent" relativePoint="CENTER">
+                                <Offset>
+                                    <AbsDimension x="5" y="12"/>
+                                </Offset>
+                            </Anchor>
                         </Anchors>
-                        <NormalTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\navbutton_resources_normal.tga">
-                            <TexCoords left="0" right="1" top="0.2465" bottom="0.7535" />
+                        <NormalTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\Config\navbar_button_dice_resources.tga">
+                            <!-- <TexCoords left="0" right="1" top="0.2465" bottom="0.7535" /> -->
                         </NormalTexture>
-                        <PushedTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\navbutton_resources_pushed.tga">
-                            <TexCoords left="0" right="1" top="0.2465" bottom="0.7535" />
+                        <PushedTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\Config\navbar_button_dice_resources_pushed.tga">
+                            <!-- <TexCoords left="0" right="1" top="0.2465" bottom="0.7535" /> -->
                         </PushedTexture>
                     </Button>
 
                     <Button name="$parentButton4" inherits="UIPanelButtonTemplate">
-                        <Size x="60" y="30" />
+                        <Size x="40" y="40" />
                         <Anchors>
-                            <Anchor point="LEFT" relativeTo="$parentButton3" relativePoint="RIGHT" x="12" y="0" />
+                            <Anchor point="RIGHT" relativeTo="$parent" relativePoint="RIGHT">
+                                <Offset>
+                                    <AbsDimension x="-28" y="12"/>
+                                </Offset>
+                            </Anchor>
                         </Anchors>
-                        <NormalTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\navbutton_misc_normal.tga">
-                            <TexCoords left="0" right="1" top="0.2465" bottom="0.7535" />
+                        <NormalTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\Config\navbar_button_dice_cards.tga">
+                            <!-- <TexCoords left="0" right="1" top="0.2465" bottom="0.7535" /> -->
                         </NormalTexture>
-                        <PushedTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\navbutton_misc_pushed.tga">
-                            <TexCoords left="0" right="1" top="0.2465" bottom="0.7535" />
+                        <PushedTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\Config\navbar_button_dice_cards_pushed.tga">
+                            <!-- <TexCoords left="0" right="1" top="0.2465" bottom="0.7535" /> -->
                         </PushedTexture>
                     </Button>
                 </Frames>

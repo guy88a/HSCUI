@@ -2,7 +2,7 @@
 ---------------------------------------
 HearthstoneCombatUI - Config
 Author: Chiieflady
-Version: 1.1
+Version: 1.2
 
 Handles the configuration window toggle via /hscui command.
 Adds per-character SavedVariables support (HSCUI_CharacterConfig).
@@ -56,6 +56,20 @@ local function HSCUI_Config_InitDefaults()
         posYSlider = HSCUI_ConfigFrameBoardSectionPropertiesFramePositionYFieldSlider,
         posYBox = HSCUI_ConfigFrameBoardSectionPropertiesFramePositionYFieldValueBox,
     }
+
+    -- Set slider label texts
+    if e.scaleSlider then
+        getglobal(e.scaleSlider:GetName() .. "Low"):SetText("Smaller")
+        getglobal(e.scaleSlider:GetName() .. "High"):SetText("Largeer")
+    end
+    if e.posXSlider then
+        getglobal(e.posXSlider:GetName() .. "Low"):SetText("Left")
+        getglobal(e.posXSlider:GetName() .. "High"):SetText("Right")
+    end
+    if e.posYSlider then
+        getglobal(e.posYSlider:GetName() .. "Low"):SetText("Lower")
+        getglobal(e.posYSlider:GetName() .. "High"):SetText("Higher")
+    end
 
     -- SCALE ----------------------------
     if e.scaleSlider and e.scaleBox then

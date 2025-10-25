@@ -7,8 +7,8 @@
             <Anchor point="TOPLEFT" relativePoint="TOPLEFT" x="52" y="-20"/>
         </Anchors>
 
-        <NormalTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\hscui_icon.tga"/>
-        <PushedTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\hscui_icon-active.tga"/>
+        <NormalTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\Config\hscui_icon.tga"/>
+        <PushedTexture file="Interface\AddOns\HearthstoneCombatUI\Media\General\Config\hscui_icon-active.tga"/>
         <HighlightTexture file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD"/>
     </Button>
 </Ui>
